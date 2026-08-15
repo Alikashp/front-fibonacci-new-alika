@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ru"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Нейросеть для презентаций онлайн — Fibonacci AI</title>
+  <meta name="description" content="Сделайте презентацию из темы или текста за минуту с нейросетью. Скачивайте в PowerPoint и PDF. 2 презентации бесплатно при регистрации.">
+  <link rel="canonical" href="https://fibonacciai.io/neyroset-dlya-prezentaciy">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Нейросеть для создания презентаций онлайн — Fibonacci AI">
+  <meta property="og:description" content="Напиши тему — получи готовую презентацию за минуту. Скачивай в PowerPoint и PDF. 2 бесплатно при регистрации.">
+  <meta property="og:url" content="https://fibonacciai.io/neyroset-dlya-prezentaciy">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Golos+Text:wght@400;500;600&display=swap&subset=cyrillic">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #080A1A; color: #F2F3FA; font-family: 'Golos Text', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: #A9B0FF; text-decoration: none; }
+  a:hover { color: #fff; }
+  :focus-visible { outline: 2px solid #8E7BFF; outline-offset: 3px; border-radius: 8px; }
+  @keyframes fibType { 0% { width: 0 } 17% { width: 100% } 88% { width: 100% } 93% { width: 0 } 100% { width: 0 } }
+  @keyframes fibCaret { 0%, 49% { opacity: 1 } 50%, 100% { opacity: 0 } }
+  @keyframes fibDeal { 0%, 20% { opacity: 0; transform: translate3d(0, 30px, 0) scale(.92) rotate(-2.6deg) } 34%, 85% { opacity: 1; transform: none } 93%, 100% { opacity: 0; transform: translate3d(0, 12px, 0) scale(.97) } }
+  @keyframes fibSpark { 0%, 24% { opacity: 0; transform: scale(.75) } 33%, 84% { opacity: 1; transform: none } 93%, 100% { opacity: 0 } }
+  @keyframes fibBar { 0%, 17% { width: 0 } 33%, 88% { width: 100% } 93%, 100% { width: 0 } }
+  @keyframes fibFloat { 0%, 100% { transform: translate3d(0, -10px, 0) rotate(-1deg) } 50% { transform: translate3d(0, 10px, 0) rotate(1.5deg) } }
+  @keyframes fibBreath { 0%, 100% { transform: scale(1); opacity: .75 } 50% { transform: scale(1.09); opacity: 1 } }
+  @keyframes fibRise { from { opacity: 0; transform: translateY(38px) } to { opacity: 1; transform: none } }
+  @keyframes fibPara { from { transform: translateY(52px) } to { transform: translateY(-52px) } }
+  @keyframes fibDim { from { opacity: 1 } to { opacity: .1 } }
+  @supports (animation-timeline: view()) {
+    [data-rise] { animation: fibRise linear both; animation-timeline: view(); animation-range: entry 4% entry 62%; }
+    [data-para] { animation: fibPara linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
+    [data-dim] { animation: fibDim linear both; animation-timeline: view(); animation-range: exit 20% exit 95%; }
+  }
+  details[data-faq] summary { list-style: none; }
+  details[data-faq] summary::-webkit-details-marker { display: none; }
+  details[data-faq][open] i { transform: rotate(45deg); }
+  @media (max-width: 920px) {
+    [data-mq="split"] { grid-template-columns: 1fr !important; }
+    [data-mq="sticky"] { display: flex !important; }
+    [data-mq="pad"] { padding-bottom: 92px !important; }
+    [data-mq="hide"] { display: none !important; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition-duration: .001ms !important; }
+  }
+</style>
+</head>
+<body>
+
+
+<div style="width:100%;overflow-x:hidden;background:#080A1A" data-mq="pad">
+
+<header style="position:sticky;top:0;z-index:60;backdrop-filter:blur(16px);background:rgba(8,10,26,.72);border-bottom:1px solid rgba(255,255,255,.07)">
+  <div style="max-width:1320px;margin:0 auto;padding:13px clamp(16px,3vw,40px);display:flex;align-items:center;gap:18px;justify-content:space-between">
+    <a href="#top" style="display:flex;align-items:center;gap:10px;color:#fff;font-family:'Oswald',sans-serif;font-weight:600;font-size:19px;letter-spacing:.06em;text-transform:uppercase">
+      <span style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#5B63FF,#8E4DFF);display:grid;place-items:center;font-family:'Golos Text',sans-serif;font-size:14px;font-weight:600">ф</span>Fibonacci
+    </a>
+    <nav data-mq="hide" style="display:flex;gap:22px;font-size:14px;color:#A6ABC8">
+      <a href="#how" style="color:#A6ABC8">Как работает</a>
+      <a href="#features" style="color:#A6ABC8">Что умеет</a>
+      <a href="#pricing" style="color:#A6ABC8">Цены</a>
+      <a href="#faq" style="color:#A6ABC8">Вопросы</a>
+    </nav>
+    <a href="https://app.fibonacciai.io/login" style="display:inline-flex;align-items:center;height:40px;padding:0 18px;border-radius:999px;background:linear-gradient(135deg,#4B54F5,#8442FF);color:#fff;font-size:14px;font-weight:600;white-space:nowrap">Попробовать</a>
+  </div>
+</header>
+
+<section id="top" data-snap="" data-dim="" style="position:relative;overflow:hidden;min-height:calc(100svh - 66px);display:flex;align-items:center;background:radial-gradient(120% 80% at 15% 0%,#2B2F9E 0%,#181B4F 45%,#0B0E24 100%);border-bottom:1px solid rgba(255,255,255,.08)">
+  <span style="position:absolute;top:-160px;left:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(132,66,255,.5),rgba(132,66,255,0) 68%);animation:fibBreath 11s ease-in-out infinite;pointer-events:none"></span>
+  <span style="position:absolute;bottom:-200px;right:-120px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(75,84,245,.42),rgba(75,84,245,0) 70%);animation:fibBreath 14s ease-in-out infinite;pointer-events:none"></span>
+  <div style="position:relative;width:100%;max-width:1320px;margin:0 auto;padding:clamp(34px,5vw,72px) clamp(16px,3vw,40px)">
+    <div data-mq="split" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.04fr);gap:clamp(28px,4vw,60px);align-items:center">
+      <div>
+        <span style="display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);font-size:13px;font-weight:500;color:#E4E6FF">
+          <span style="width:7px;height:7px;border-radius:50%;background:#66E0A3"></span>10 000+ человек в месяц
+        </span>
+        <h1 style="font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(34px,5vw,70px);line-height:.97;margin:20px 0 0;text-wrap:balance;color:#fff">Нейросеть для создания презентаций онлайн</h1>
+        <p style="font-size:clamp(17px,1.45vw,21px);line-height:1.45;color:#C3C7E8;margin:18px 0 0;max-width:26ch">Напиши тему — получи готовую деку за минуту.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px">
+          <a href="https://app.fibonacciai.io/login" style="display:inline-flex;align-items:center;justify-content:center;height:56px;padding:0 28px;border-radius:999px;background:#fff;color:#12142E;font-size:16px;font-weight:600;transition:transform .22s ease,box-shadow .22s ease">Попробовать бесплатно</a>
+          <a href="https://t.me/Fibonacci_presentation_bot" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;height:56px;padding:0 26px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.28);color:#fff;font-size:16px;font-weight:600;transition:background .22s ease,transform .22s ease">
+            <svg width="20" height="20" aria-hidden="true" style="flex:none"><path d="M22 3 1.8 10.9l6.1 2.3 2.2 7.3 3.4-4.6 5.2 3.9L22 3Z" fill="#29ABE2"></path></svg>Создать в Telegram
+          </a>
+        </div>
+        <p style="font-size:14px;color:#9AA0C4;margin:16px 0 0">Две презентации бесплатно при регистрации — карта не нужна.</p>
+      </div>
+
+      <div style="position:relative">
+        <div style="position:relative;z-index:2;background:rgba(10,12,32,.74);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:clamp(14px,1.6vw,20px);box-shadow:0 44px 90px -40px rgba(0,0,0,.9);backdrop-filter:blur(6px)">
+          <span style="display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8E95BE;font-weight:600;margin-bottom:11px">Тема презентации</span>
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <div style="flex:1 1 190px;min-width:0;display:flex;align-items:center;height:50px;padding:0 14px;border:1px solid rgba(255,255,255,.18);border-radius:12px;background:rgba(255,255,255,.05);overflow:hidden">
+              <span style="display:inline-block;overflow:hidden;white-space:nowrap;font-size:16px;color:#fff;animation:fibType 11s cubic-bezier(.55,0,.5,1) infinite">Экономика Древнего Рима</span>
+              <span style="display:inline-block;width:2px;height:20px;background:#8E7BFF;margin-left:2px;flex:none;animation:fibCaret 1s steps(1) infinite"></span>
+            </div>
+            <span style="display:inline-flex;align-items:center;height:50px;padding:0 20px;border-radius:12px;background:linear-gradient(135deg,#4B54F5,#8442FF);color:#fff;font-size:15px;font-weight:600;white-space:nowrap">Сгенерировать</span>
+          </div>
+          <div style="height:3px;border-radius:999px;background:rgba(255,255,255,.1);margin:15px 0;overflow:hidden">
+            <div style="height:100%;border-radius:999px;background:linear-gradient(90deg,#4B54F5,#B07BFF);animation:fibBar 11s cubic-bezier(.4,0,.3,1) infinite"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px">
+            <div style="animation:fibDeal 11s cubic-bezier(.2,.8,.2,1) infinite;border:1px solid rgba(255,255,255,.14);border-radius:11px;overflow:hidden">
+              <img src="/img/img1.webp" width="640" height="360" alt="Пример презентации Fibonacci AI — титульный слайд" style="aspect-ratio:16/9;object-fit:cover">
+            </div>
+            <div style="animation:fibDeal 11s cubic-bezier(.2,.8,.2,1) .16s infinite;border:1px solid rgba(255,255,255,.14);border-radius:11px;overflow:hidden">
+              <img src="/img/img2.webp" width="640" height="360" alt="Пример презентации Fibonacci AI — слайд с текстом и картинкой" style="aspect-ratio:16/9;object-fit:cover">
+            </div>
+            <div style="animation:fibDeal 11s cubic-bezier(.2,.8,.2,1) .32s infinite;border:1px solid rgba(255,255,255,.14);border-radius:11px;overflow:hidden">
+              <img src="/img/img3.webp" width="640" height="360" alt="Пример презентации Fibonacci AI — слайд со списком разделов" style="aspect-ratio:16/9;object-fit:cover">
+            </div>
+          </div>
+        </div>
+        <div data-mq="hide" style="position:absolute;z-index:1;right:-26px;top:-54px;width:132px;height:132px;border-radius:34px;background:linear-gradient(150deg,#8E7BFF,#4B54F5 60%,#2A1E7A);box-shadow:inset 0 3px 12px rgba(255,255,255,.55),inset 0 -14px 28px rgba(0,0,0,.5),0 30px 60px -22px rgba(132,66,255,.85);animation:fibFloat 9s ease-in-out infinite;pointer-events:none"></div>
+        <div data-mq="hide" style="position:absolute;z-index:1;left:-40px;bottom:-40px;width:92px;height:92px;border-radius:50%;background:linear-gradient(160deg,#C77BFF,#4B54F5);box-shadow:inset 0 3px 10px rgba(255,255,255,.5),inset 0 -12px 22px rgba(0,0,0,.45),0 24px 46px -20px rgba(199,123,255,.8);animation:fibFloat 12s ease-in-out infinite reverse;pointer-events:none"></div>
+        <span style="position:absolute;z-index:3;right:8px;bottom:-16px;display:inline-flex;align-items:center;gap:7px;padding:9px 15px;border-radius:999px;background:#fff;color:#12142E;font-size:13px;font-weight:600;animation:fibSpark 11s ease infinite;box-shadow:0 18px 36px -16px rgba(0,0,0,.9)">
+          <span style="width:6px;height:6px;border-radius:50%;background:#8442FF"></span>8 слайдов готовы
+        </span>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center;justify-content:center;font-size:13px;color:#8E95BE;font-weight:500;margin-top:clamp(26px,3.5vw,52px)">
+      <span>PowerPoint</span><span style="color:#3A3F63">·</span><span>PDF</span><span style="color:#3A3F63">·</span><span>Telegram</span><span style="color:#3A3F63">·</span><span>15+ языков</span><span style="color:#3A3F63">·</span><span>Поддержка Фонда содействия инновациям</span>
+    </div>
+  </div>
+</section>
+
+<section id="how" data-snap="" data-dim="" style="position:relative;overflow:hidden;min-height:100svh;display:flex;align-items:center;background:linear-gradient(170deg,#141737 0%,#0B0E24 100%);border-bottom:1px solid rgba(255,255,255,.08)">
+  <div style="position:relative;width:100%;max-width:1320px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(16px,3vw,40px)">
+    <h2 data-rise="" style="font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(28px,4vw,56px);line-height:1;margin:0;color:#fff">Напиши тему.<br>Дальше — не твоя забота</h2>
+    <p data-rise="" style="font-size:16.5px;color:#A6ABC8;margin:16px 0 0;max-width:52ch">9 из 10 презентаций в сервисе создаются именно так — просто по теме.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:clamp(26px,3.4vw,46px)">
+      <div style="border-radius:18px;padding:15px;transition:transform .3s ease,border-color .3s ease,background .3s ease;background:rgba(132,66,255,.12);border:1px solid rgba(132,66,255,.55);transform:translateY(-4px)">
+        <div style="border:1px solid rgba(255,255,255,.1);border-radius:12px;background:linear-gradient(150deg,#232866,#141737);aspect-ratio:16/10;display:flex;flex-direction:column;justify-content:center;gap:9px;padding:14px">
+          <div style="display:flex;align-items:center;height:34px;padding:0 11px;border-radius:9px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);overflow:hidden">
+            <span style="font-size:12.5px;color:#fff;white-space:nowrap;overflow:hidden;animation:fibType 9s cubic-bezier(.55,0,.5,1) infinite">Экономика Древнего Рима</span>
+            <span style="width:2px;height:15px;background:#8E7BFF;margin-left:2px;flex:none;animation:fibCaret 1s steps(1) infinite"></span>
+          </div>
+          <span style="font-size:11px;color:#8E95BE">одна строка — и всё</span>
+        </div>
+        <h3 style="font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.03em;font-size:17px;font-weight:600;margin:15px 0 6px;color:#fff">1 · Напиши тему</h3>
+        <p style="font-size:14px;line-height:1.5;color:#A6ABC8;margin:0">Одна строка: «Экономика Древнего Рима».</p>
+      </div>
+      <div style="border-radius:18px;padding:15px;transition:transform .3s ease,border-color .3s ease,background .3s ease;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);transform:translateY(0)">
+        <div style="border:1px solid rgba(255,255,255,.1);border-radius:12px;background:linear-gradient(150deg,#232866,#141737);aspect-ratio:16/10;display:flex;align-items:center;gap:7px;padding:12px">
+          <img src="/img/img4.webp" width="640" height="360" loading="lazy" alt="Пример презентации Fibonacci AI — светлое оформление" style="flex:1;min-width:0;aspect-ratio:16/10;object-fit:cover;border-radius:7px;opacity:.55">
+          <img src="/img/img1.webp" width="640" height="360" loading="lazy" alt="Пример презентации Fibonacci AI — выбранное оформление" style="flex:1.25;min-width:0;aspect-ratio:16/10;object-fit:cover;border-radius:7px;outline:2px solid #8E7BFF;outline-offset:1px">
+          <img src="/img/img5.webp" width="640" height="360" loading="lazy" alt="Пример презентации Fibonacci AI — тёмное оформление" style="flex:1;min-width:0;aspect-ratio:16/10;object-fit:cover;border-radius:7px;opacity:.55">
+        </div>
+        <h3 style="font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.03em;font-size:17px;font-weight:600;margin:15px 0 6px;color:#fff">2 · Выбери оформление</h3>
+        <p style="font-size:14px;line-height:1.5;color:#A6ABC8;margin:0">Шрифты, цвета и сетка подтянутся сами.</p>
+      </div>
+      <div style="border-radius:18px;padding:15px;transition:transform .3s ease,border-color .3s ease,background .3s ease;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);transform:translateY(0)">
+        <div style="position:relative;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:linear-gradient(150deg,#232866,#141737);aspect-ratio:16/10;overflow:hidden;padding:12px">
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px">
+            <img src="/img/img2.webp" width="640" height="360" loading="lazy" alt="Пример презентации Fibonacci AI — собранный слайд" style="aspect-ratio:16/9;object-fit:cover;border-radius:6px;animation:fibDeal 9s cubic-bezier(.2,.8,.2,1) infinite">
+            <img src="/img/img3.webp" width="640" height="360" loading="lazy" alt="Пример презентации Fibonacci AI — собранный слайд" style="aspect-ratio:16/9;object-fit:cover;border-radius:6px;animation:fibDeal 9s cubic-bezier(.2,.8,.2,1) .18s infinite">
+            <img src="/img/img6.webp" width="640" height="360" loading="lazy" alt="Пример презентации Fibonacci AI — собранный слайд" style="aspect-ratio:16/9;object-fit:cover;border-radius:6px;animation:fibDeal 9s cubic-bezier(.2,.8,.2,1) .36s infinite">
+          </div>
+          <div style="height:3px;border-radius:999px;background:rgba(255,255,255,.12);margin-top:11px;overflow:hidden">
+            <div style="height:100%;background:linear-gradient(90deg,#4B54F5,#B07BFF);animation:fibBar 9s cubic-bezier(.4,0,.3,1) infinite"></div>
+          </div>
+          <span style="position:absolute;left:12px;bottom:10px;font-size:11px;color:#8E95BE;font-variant-numeric:tabular-nums">слайд 5 / 8</span>
+        </div>
+        <h3 style="font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.03em;font-size:17px;font-weight:600;margin:15px 0 6px;color:#fff">3 · ИИ собирает слайды</h3>
+        <p style="font-size:14px;line-height:1.5;color:#A6ABC8;margin:0">Разделы, тезисы, заголовки и картинки по смыслу.</p>
+      </div>
+      <div style="border-radius:18px;padding:15px;transition:transform .3s ease,border-color .3s ease,background .3s ease;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);transform:translateY(0)">
+        <div style="border:1px solid rgba(255,255,255,.1);border-radius:12px;background:linear-gradient(150deg,#232866,#141737);aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;gap:12px;padding:12px">
+          <span style="position:relative;display:flex;flex-direction:column;justify-content:flex-end;width:56px;height:70px;border-radius:8px 14px 8px 8px;background:linear-gradient(160deg,#E06A2B,#C0431B);box-shadow:0 12px 24px -12px rgba(224,106,43,.9);padding:7px;font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.06em;color:#fff">PPTX<span style="position:absolute;top:0;right:0;width:16px;height:16px;background:rgba(255,255,255,.42);clip-path:polygon(100% 0,0 0,100% 100%);border-top-right-radius:12px"></span></span>
+          <span style="position:relative;display:flex;flex-direction:column;justify-content:flex-end;width:56px;height:70px;border-radius:8px 14px 8px 8px;background:linear-gradient(160deg,#D33A3A,#961F1F);box-shadow:0 12px 24px -12px rgba(211,58,58,.9);padding:7px;font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.06em;color:#fff">PDF<span style="position:absolute;top:0;right:0;width:16px;height:16px;background:rgba(255,255,255,.42);clip-path:polygon(100% 0,0 0,100% 100%);border-top-right-radius:12px"></span></span>
+        </div>
+        <h3 style="font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.03em;font-size:17px;font-weight:600;margin:15px 0 6px;color:#fff">4 · Скачивай и сдавай</h3>
+        <p style="font-size:14px;line-height:1.5;color:#A6ABC8;margin:0">Файл готов к сдаче или показу с проектора.</p>
+      </div>
+    </div>
+    <p style="font-size:15.5px;line-height:1.6;color:#A6ABC8;margin:22px 0 0;max-width:68ch">Тема сложная или нужен конкретный материал — загрузи свой текст в <strong style="color:#fff;font-weight:600">docx, pdf или txt</strong>. Нейросеть сожмёт его до слайдов, а не просто разрежет на куски.</p>
+  </div>
+</section>
+
+<section id="features" data-snap="" data-dim="" style="position:relative;overflow:hidden;min-height:100svh;display:flex;align-items:center;background:linear-gradient(160deg,#191D46 0%,#0B0E24 100%);border-bottom:1px solid rgba(255,255,255,.08)">
+  <span data-para="" style="position:absolute;top:-140px;right:-90px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(132,66,255,.4),rgba(132,66,255,0) 70%);pointer-events:none"></span>
+  <div style="position:relative;width:100%;max-width:1320px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(16px,3vw,40px)">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap">
+      <h2 style="font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(28px,4vw,56px);line-height:1;margin:0;color:#fff">Что умеет</h2>
+      <div style="display:flex;align-items:center;gap:10px">
+        <button type="button" data-feat-prev aria-label="Предыдущая возможность" style="width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.06);color:#fff;font-size:18px;cursor:pointer;transition:background .2s ease">←</button>
+        <button type="button" data-feat-next aria-label="Следующая возможность" style="width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.06);color:#fff;font-size:18px;cursor:pointer;transition:background .2s ease">→</button>
+      </div>
+    </div>
+    <div style="overflow:hidden;margin-top:clamp(22px,3vw,40px);border-radius:24px" data-feat-touchstart data-feat-touchend>
+      <div style="display:flex;width:600%;transition:transform .6s cubic-bezier(.4,0,.2,1);transform:translateX(0)">
+        <div style="width:16.6667%;padding-right:0">
+      <div data-mq="split" style="display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(22px,3.4vw,52px);align-items:center;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:clamp(20px,2.6vw,38px)">
+        <div>
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#7B5Cff,#4E7Bff);box-shadow:0 14px 28px -12px rgba(132,66,255,.9);font-size:19px">🎯</span>
+          <h3 style="font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(20px,2.2vw,30px);font-weight:600;margin:18px 0 10px;color:#fff">ГЕНЕРАЦИЯ ПО ТЕМЕ</h3>
+          <p style="font-size:15.5px;line-height:1.6;color:#A6ABC8;margin:0;max-width:44ch">Достаточно формулировки — сервис сам решает, из каких блоков собрать рассказ.</p>
+        </div>
+        <img src="/img/img1.webp" width="1220" height="800" loading="lazy" decoding="async" alt="Fibonacci AI — титульный слайд" style="border-radius:14px;border:1px solid rgba(255,255,255,.12)">
+      </div>
+    </div><div style="width:16.6667%;padding-right:0">
+      <div data-mq="split" style="display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(22px,3.4vw,52px);align-items:center;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:clamp(20px,2.6vw,38px)">
+        <div>
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#9B6Bff,#6E4Bff);box-shadow:0 14px 28px -12px rgba(132,66,255,.9);font-size:19px">📄</span>
+          <h3 style="font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(20px,2.2vw,30px);font-weight:600;margin:18px 0 10px;color:#fff">ИЗ ТЕКСТА И ДОКУМЕНТОВ</h3>
+          <p style="font-size:15.5px;line-height:1.6;color:#A6ABC8;margin:0;max-width:44ch">Есть реферат, статья, отчёт? Загрузи docx, pdf или txt — получишь слайды по его содержанию.</p>
+        </div>
+        <img src="/img/img7.webp" width="1220" height="800" loading="lazy" decoding="async" alt="Fibonacci AI — слайд из документа" style="border-radius:14px;border:1px solid rgba(255,255,255,.12)">
+      </div>
+    </div><div style="width:16.6667%;padding-right:0">
+      <div data-mq="split" style="display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(22px,3.4vw,52px);align-items:center;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:clamp(20px,2.6vw,38px)">
+        <div>
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#4EA8ff,#4E7Bff);box-shadow:0 14px 28px -12px rgba(132,66,255,.9);font-size:19px">🌍</span>
+          <h3 style="font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(20px,2.2vw,30px);font-weight:600;margin:18px 0 10px;color:#fff">БОЛЕЕ 15 ЯЗЫКОВ</h3>
+          <p style="font-size:15.5px;line-height:1.6;color:#A6ABC8;margin:0;max-width:44ch">Русский, английский, казахский, узбекский, китайский, испанский, французский, немецкий и другие.</p>
+        </div>
+        <img src="/img/img4.webp" width="1220" height="800" loading="lazy" decoding="async" alt="Fibonacci AI — слайд с языками" style="border-radius:14px;border:1px solid rgba(255,255,255,.12)">
+      </div>
+    </div><div style="width:16.6667%;padding-right:0">
+      <div data-mq="split" style="display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(22px,3.4vw,52px);align-items:center;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:clamp(20px,2.6vw,38px)">
+        <div>
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#7B5Cff,#5E7Bff);box-shadow:0 14px 28px -12px rgba(132,66,255,.9);font-size:19px">🧩</span>
+          <h3 style="font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(20px,2.2vw,30px);font-weight:600;margin:18px 0 10px;color:#fff">АВТОМАТИЧЕСКАЯ СТРУКТУРА</h3>
+          <p style="font-size:15.5px;line-height:1.6;color:#A6ABC8;margin:0;max-width:44ch">Введение, основные разделы, выводы — без «12 слайдов подряд с одинаковыми списками».</p>
+        </div>
+        <img src="/img/img3.webp" width="1220" height="800" loading="lazy" decoding="async" alt="Fibonacci AI — слайд со структурой" style="border-radius:14px;border:1px solid rgba(255,255,255,.12)">
+      </div>
+    </div><div style="width:16.6667%;padding-right:0">
+      <div data-mq="split" style="display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(22px,3.4vw,52px);align-items:center;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:clamp(20px,2.6vw,38px)">
+        <div>
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#8B5Cff,#B06Bff);box-shadow:0 14px 28px -12px rgba(132,66,255,.9);font-size:19px">🖼️</span>
+          <h3 style="font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(20px,2.2vw,30px);font-weight:600;margin:18px 0 10px;color:#fff">ПОДБОР ИЗОБРАЖЕНИЙ</h3>
+          <p style="font-size:15.5px;line-height:1.6;color:#A6ABC8;margin:0;max-width:44ch">К каждому разделу подтягиваются картинки по смыслу, не случайные стоки на белом фоне.</p>
+        </div>
+        <img src="/img/img6.webp" width="1220" height="800" loading="lazy" decoding="async" alt="Fibonacci AI — слайд с изображением" style="border-radius:14px;border:1px solid rgba(255,255,255,.12)">
+      </div>
+    </div><div style="width:16.6667%;padding-right:0">
+      <div data-mq="split" style="display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(22px,3.4vw,52px);align-items:center;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:clamp(20px,2.6vw,38px)">
+        <div>
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#6E5Cff,#4E9Bff);box-shadow:0 14px 28px -12px rgba(132,66,255,.9);font-size:19px">✏️</span>
+          <h3 style="font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(20px,2.2vw,30px);font-weight:600;margin:18px 0 10px;color:#fff">ПРАВКИ ПРЯМО НА САЙТЕ</h3>
+          <p style="font-size:15.5px;line-height:1.6;color:#A6ABC8;margin:0;max-width:44ch">Меняй тексты, заголовки и порядок — ничего не «замуровано».</p>
+        </div>
+        <img src="/img/img5.webp" width="1220" height="800" loading="lazy" decoding="async" alt="Fibonacci AI — редактирование слайда" style="border-radius:14px;border:1px solid rgba(255,255,255,.12)">
+      </div>
+    </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;justify-content:center;margin-top:22px">
+      <button type="button" data-dot="0" aria-label="Возможность 1" style="width:26px;height:8px;border:0;border-radius:999px;background:#8442ff;cursor:pointer;transition:width .3s ease,background .3s ease;padding:0"></button><button type="button" data-dot="1" aria-label="Возможность 2" style="width:8px;height:8px;border:0;border-radius:999px;background:rgba(255,255,255,.28);cursor:pointer;transition:width .3s ease,background .3s ease;padding:0"></button><button type="button" data-dot="2" aria-label="Возможность 3" style="width:8px;height:8px;border:0;border-radius:999px;background:rgba(255,255,255,.28);cursor:pointer;transition:width .3s ease,background .3s ease;padding:0"></button><button type="button" data-dot="3" aria-label="Возможность 4" style="width:8px;height:8px;border:0;border-radius:999px;background:rgba(255,255,255,.28);cursor:pointer;transition:width .3s ease,background .3s ease;padding:0"></button><button type="button" data-dot="4" aria-label="Возможность 5" style="width:8px;height:8px;border:0;border-radius:999px;background:rgba(255,255,255,.28);cursor:pointer;transition:width .3s ease,background .3s ease;padding:0"></button><button type="button" data-dot="5" aria-label="Возможность 6" style="width:8px;height:8px;border:0;border-radius:999px;background:rgba(255,255,255,.28);cursor:pointer;transition:width .3s ease,background .3s ease;padding:0"></button>
+    </div>
+  </div>
+</section>
+
+<section data-snap="" data-dim="" style="position:relative;overflow:hidden;min-height:100svh;display:flex;align-items:center;background:linear-gradient(200deg,#232866 0%,#0B0E24 68%);border-bottom:1px solid rgba(255,255,255,.08)">
+  <div style="position:relative;width:100%;max-width:1320px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(16px,3vw,40px)">
+    <div data-mq="split" style="display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:clamp(24px,3.6vw,56px);align-items:center">
+      <div data-rise="">
+        <h2 style="font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(26px,3.6vw,50px);line-height:1;margin:0;color:#fff">Редактор<br>в браузере</h2>
+        <p style="font-size:16.5px;line-height:1.55;color:#A6ABC8;margin:16px 0 0;max-width:36ch">Слайды слева, содержимое справа. Поменял текст, заменил картинку — скачал заново.</p>
+      </div>
+      <img data-para="" src="/img/img7.webp" width="1220" height="800" loading="lazy" alt="Пример презентации Fibonacci AI — Famous Women in Science в онлайн-редакторе">
+    </div>
+  </div>
+</section>
+
+<section data-snap="" data-dim="" style="position:relative;overflow:hidden;min-height:100svh;display:flex;align-items:center;background:linear-gradient(170deg,#141737 0%,#0B0E24 100%);border-bottom:1px solid rgba(255,255,255,.08)">
+  <div style="position:relative;width:100%;max-width:1320px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(16px,3vw,40px)">
+    <div data-mq="split" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(24px,3.6vw,56px);align-items:center">
+      <div data-rise="">
+        <div style="display:flex;gap:14px;align-items:center">
+          <span style="position:relative;display:flex;flex-direction:column;justify-content:flex-end;width:62px;height:78px;border-radius:9px 16px 9px 9px;background:linear-gradient(160deg,#E06A2B,#C0431B);box-shadow:0 16px 30px -14px rgba(224,106,43,.9);padding:8px;font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:.06em;color:#fff;animation:fibFloat 10s ease-in-out infinite">PPTX<span style="position:absolute;top:0;right:0;width:18px;height:18px;background:rgba(255,255,255,.42);clip-path:polygon(100% 0,0 0,100% 100%);border-top-right-radius:14px"></span></span>
+          <span style="position:relative;display:flex;flex-direction:column;justify-content:flex-end;width:62px;height:78px;border-radius:9px 16px 9px 9px;background:linear-gradient(160deg,#D33A3A,#961F1F);box-shadow:0 16px 30px -14px rgba(211,58,58,.9);padding:8px;font-family:'Oswald',sans-serif;font-size:13px;letter-spacing:.06em;color:#fff;animation:fibFloat 13s ease-in-out infinite reverse">PDF<span style="position:absolute;top:0;right:0;width:18px;height:18px;background:rgba(255,255,255,.42);clip-path:polygon(100% 0,0 0,100% 100%);border-top-right-radius:14px"></span></span>
+        </div>
+        <h2 style="font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(26px,3.6vw,50px);line-height:1;margin:22px 0 0;color:#fff">PowerPoint и PDF.<br>Без водяных знаков</h2>
+        <p style="font-size:16px;line-height:1.6;color:#A6ABC8;margin:18px 0 0;max-width:44ch"><strong style="color:#fff;font-weight:600">.pptx</strong> — дописать слайд, поменять заголовок, добавить свои графики. Открывается в Microsoft PowerPoint, «Google Презентациях» и «Р7-Офис».</p>
+        <p style="font-size:16px;line-height:1.6;color:#A6ABC8;margin:12px 0 0;max-width:44ch"><strong style="color:#fff;font-weight:600">PDF</strong> — отправить, распечатать или сдать: вёрстка не поедет ни на одном компьютере.</p>
+        <p style="font-size:14.5px;color:#8E95BE;margin:18px 0 0"><a href="/skachat-prezentaciyu-powerpoint">Скачать презентацию в PowerPoint →</a></p>
+      </div>
+      <div data-para="" style="border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:11px;background:rgba(255,255,255,.05)">
+        <div style="display:flex;gap:6px;padding:2px 4px 10px">
+          <span style="width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.28)"></span>
+          <span style="width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.28)"></span>
+          <span style="width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.28)"></span>
+        </div>
+        <img src="/img/img6.webp" width="1280" height="720" loading="lazy" alt="Пример презентации Fibonacci AI — слайд Mitigation Strategies в PowerPoint" style="border-radius:9px">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-snap="" data-dim="" style="position:relative;overflow:hidden;min-height:100svh;display:flex;align-items:center;background:linear-gradient(140deg,#3A2BA0 0%,#181B4F 55%,#0B0E24 100%);border-bottom:1px solid rgba(255,255,255,.08)">
+  <div style="position:relative;width:100%;max-width:1320px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(16px,3vw,40px)">
+    <div data-mq="split" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.92fr);gap:clamp(24px,3.6vw,48px);align-items:center">
+      <div data-rise="">
+        <span style="display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:#fff;box-shadow:0 18px 36px -16px rgba(41,171,226,.9);animation:fibFloat 11s ease-in-out infinite">
+          <svg width="30" height="30" aria-hidden="true"><path d="M22 3 1.8 10.9l6.1 2.3 2.2 7.3 3.4-4.6 5.2 3.9L22 3Z" fill="#29ABE2"></path></svg>
+        </span>
+        <h2 style="font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(26px,3.6vw,50px);line-height:1;margin:22px 0 0;color:#fff">Работает<br>и в Telegram</h2>
+        <p style="font-size:16.5px;line-height:1.6;color:#CFD3F0;margin:16px 0 0;max-width:38ch">Отправил тему — получил готовый файл в чат. Удобно, когда ты не за компьютером.</p>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:24px;max-width:34ch">
+          <span style="align-self:flex-start;padding:12px 18px;border-radius:18px 18px 18px 6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);color:#fff;font-size:14.5px;font-weight:500;animation:fibFloat 9s ease-in-out infinite">Прямо в чат</span>
+          <span style="align-self:flex-end;padding:12px 18px;border-radius:18px 18px 6px 18px;background:linear-gradient(135deg,#29ABE2,#4B54F5);color:#fff;font-size:14.5px;font-weight:500;box-shadow:0 16px 30px -16px rgba(41,171,226,.9);animation:fibFloat 11s ease-in-out infinite reverse">Готовый файл за три минуты</span>
+          <span style="align-self:flex-start;padding:12px 18px;border-radius:18px 18px 18px 6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);color:#fff;font-size:14.5px;font-weight:500;animation:fibFloat 13s ease-in-out infinite">Компьютер не нужен</span>
+        </div>
+        <a href="https://t.me/Fibonacci_presentation_bot" style="display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 26px;border-radius:999px;background:#fff;color:#12142E;font-size:16px;font-weight:600;margin-top:26px;transition:transform .22s ease">
+          <svg width="20" height="20" aria-hidden="true" style="flex:none"><path d="M22 3 1.8 10.9l6.1 2.3 2.2 7.3 3.4-4.6 5.2 3.9L22 3Z" fill="#29ABE2"></path></svg>Создать в Telegram
+        </a>
+      </div>
+      <div style="position:relative;display:flex;justify-content:center">
+        <span data-mq="hide" style="position:absolute;left:0;top:6%;width:132px;height:132px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#8FE1FF,#29ABE2 55%,#12628F);box-shadow:inset 0 4px 14px rgba(255,255,255,.6),inset 0 -18px 30px rgba(0,0,0,.35),0 30px 56px -22px rgba(41,171,226,.9);display:grid;place-items:center;animation:fibFloat 10s ease-in-out infinite;pointer-events:none">
+          <svg width="62" height="62" aria-hidden="true"><path d="M22 3 1.8 10.9l6.1 2.3 2.2 7.3 3.4-4.6 5.2 3.9L22 3Z" fill="#fff"></path></svg>
+        </span>
+        <span data-mq="hide" style="position:absolute;right:2%;top:2%;display:flex;flex-direction:column;justify-content:flex-end;width:78px;height:98px;border-radius:11px 20px 11px 11px;background:linear-gradient(160deg,#E06A2B,#C0431B);box-shadow:inset 0 3px 10px rgba(255,255,255,.4),0 26px 46px -20px rgba(224,106,43,.9);padding:10px;font-family:'Oswald',sans-serif;font-size:14px;letter-spacing:.06em;color:#fff;animation:fibFloat 13s ease-in-out infinite reverse;pointer-events:none">PPTX<span style="position:absolute;top:0;right:0;width:22px;height:22px;background:rgba(255,255,255,.42);clip-path:polygon(100% 0,0 0,100% 100%);border-top-right-radius:18px"></span></span>
+        <span data-mq="hide" style="position:absolute;right:6%;bottom:8%;width:96px;height:96px;border-radius:30px;background:linear-gradient(150deg,#7CF0B4,#22B573 60%,#0E6B45);box-shadow:inset 0 4px 12px rgba(255,255,255,.55),inset 0 -16px 26px rgba(0,0,0,.35),0 28px 50px -22px rgba(34,181,115,.9);display:grid;place-items:center;font-size:44px;color:#fff;animation:fibFloat 12s ease-in-out infinite;pointer-events:none">✓</span>
+        <img data-para="" src="/img/img8.webp" width="700" height="1329" loading="lazy" alt="Пример презентации Fibonacci AI — генерация в Telegram-боте" style="position:relative;z-index:2;max-height:min(82svh,660px);width:auto;filter:drop-shadow(0 40px 70px rgba(0,0,0,.65))">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-snap="" data-dim="" style="position:relative;overflow:hidden;min-height:100svh;display:flex;align-items:center;background:linear-gradient(170deg,#141737 0%,#0B0E24 100%);border-bottom:1px solid rgba(255,255,255,.08)">
+  <div style="position:relative;width:100%;max-width:1320px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(16px,3vw,40px)">
+    <h2 data-rise="" style="font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(28px,4vw,56px);line-height:1;margin:0;color:#fff">Для кого</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:14px;margin-top:clamp(24px,3.2vw,44px)">
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:20px;overflow:hidden;transition:transform .3s ease,border-color .3s ease">
+        <img src="/img/img3.webp" width="640" height="360" loading="lazy" alt="Пример презентации Fibonacci AI — Студенческие организации" style="aspect-ratio:16/9;object-fit:cover">
+        <div style="padding:20px">
+          <h3 style="font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.03em;font-size:19px;font-weight:600;margin:0 0 9px;color:#fff">Студентам</h3>
+          <p style="font-size:14.5px;line-height:1.6;color:#A6ABC8;margin:0">Семинар завтра, а тема выдана сегодня — обычная история. Введи тему или загрузи реферат, получи структуру, по которой не стыдно выступать.</p>
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:20px;overflow:hidden;transition:transform .3s ease,border-color .3s ease">
+        <img src="/img/img5.webp" width="640" height="360" loading="lazy" alt="Пример презентации Fibonacci AI — Social Impacts" style="aspect-ratio:16/9;object-fit:cover">
+        <div style="padding:20px">
+          <h3 style="font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.03em;font-size:19px;font-weight:600;margin:0 0 9px;color:#fff">Школьникам</h3>
+          <p style="font-size:14.5px;line-height:1.6;color:#A6ABC8;margin:0">Проект по биологии, доклад по истории, защита в конце четверти — без сорока минут перетаскивания блоков в PowerPoint.</p>
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:20px;overflow:hidden;transition:transform .3s ease,border-color .3s ease">
+        <img src="/img/img4.webp" width="640" height="360" loading="lazy" alt="Пример презентации Fibonacci AI — Maria Montessori" style="aspect-ratio:16/9;object-fit:cover">
+        <div style="padding:20px">
+          <h3 style="font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.03em;font-size:19px;font-weight:600;margin:0 0 9px;color:#fff">Преподавателям</h3>
+          <p style="font-size:14.5px;line-height:1.6;color:#A6ABC8;margin:0">Лекция, методический материал, разбор темы для нового потока. Загружаешь конспект — получаешь слайды к паре.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" data-snap="" data-dim="" style="position:relative;overflow:hidden;min-height:100svh;display:flex;align-items:center;background:linear-gradient(160deg,#191D46 0%,#0B0E24 100%);border-bottom:1px solid rgba(255,255,255,.08)">
+  <div style="position:relative;width:100%;max-width:1320px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(16px,3vw,40px)">
+    <h2 data-rise="" style="font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(28px,4vw,56px);line-height:1;margin:0;color:#fff">Сколько стоит</h2>
+    <p style="font-size:16.5px;color:#A6ABC8;margin:14px 0 0">Начать можно бесплатно.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(196px,1fr));gap:13px;margin-top:clamp(24px,3vw,40px);align-items:stretch">
+      <div style="border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:22px;background:rgba(255,255,255,.04);transition:transform .3s ease">
+        <span style="font-family:'Oswald',sans-serif;font-size:clamp(22px,2.1vw,28px);font-weight:600;color:#fff">2 ПРЕЗЕНТАЦИИ</span>
+        <p style="font-size:14px;color:#8E95BE;margin:6px 0 0">бесплатно</p>
+        <p style="font-size:14.5px;line-height:1.55;color:#A6ABC8;margin:14px 0 0">Сразу после регистрации, карта не нужна.</p>
+      </div>
+      <div style="border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:22px;background:rgba(255,255,255,.04);transition:transform .3s ease">
+        <span style="font-family:'Oswald',sans-serif;font-size:clamp(24px,2.3vw,32px);font-weight:600;color:#fff">1 ₽</span>
+        <p style="font-size:14px;color:#8E95BE;margin:6px 0 0">пробная неделя</p>
+        <p style="font-size:14.5px;line-height:1.55;color:#A6ABC8;margin:14px 0 0">Полный доступ, чтобы проверить сервис на реальных задачах.</p>
+      </div>
+      <div style="position:relative;border:1px solid rgba(142,123,255,.75);border-radius:20px;padding:26px 22px;background:linear-gradient(150deg,#4B54F5,#8442FF);box-shadow:0 30px 60px -26px rgba(132,66,255,.95);transform:scale(1.03);transition:transform .3s ease">
+        <span style="position:absolute;top:-12px;left:20px;padding:5px 12px;border-radius:999px;background:#fff;color:#12142E;font-size:11.5px;font-weight:600">Популярный выбор</span>
+        <span style="font-family:'Oswald',sans-serif;font-size:clamp(30px,2.9vw,42px);font-weight:700;color:#fff">199 ₽</span>
+        <p style="font-size:14.5px;color:#DDD9FF;margin:6px 0 0">в неделю</p>
+        <p style="font-size:14.5px;line-height:1.55;color:#EDEBFF;margin:14px 0 0">Если презентации нужны точечно, под сессию или защиту.</p>
+        <a href="https://app.fibonacciai.io/login" style="display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 20px;border-radius:999px;background:#fff;color:#12142E;font-size:14.5px;font-weight:600;margin-top:18px">Выбрать</a>
+      </div>
+      <div style="border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:22px;background:rgba(255,255,255,.04);transition:transform .3s ease">
+        <span style="font-family:'Oswald',sans-serif;font-size:clamp(24px,2.3vw,32px);font-weight:600;color:#fff">449 ₽</span>
+        <p style="font-size:14px;color:#8E95BE;margin:6px 0 0">в месяц</p>
+        <p style="font-size:14.5px;line-height:1.55;color:#A6ABC8;margin:14px 0 0">Вариант для тех, кто готовит слайды регулярно.</p>
+      </div>
+      <div style="position:relative;border:1px solid rgba(255,255,255,.22);border-radius:20px;padding:22px;background:rgba(255,255,255,.07);transition:transform .3s ease">
+        <span style="position:absolute;top:-12px;left:20px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:11.5px;font-weight:600">Выгоднее всего</span>
+        <span style="font-family:'Oswald',sans-serif;font-size:clamp(24px,2.3vw,32px);font-weight:600;color:#fff">2490 ₽</span>
+        <p style="font-size:14px;color:#8E95BE;margin:6px 0 0">за 6 месяцев</p>
+        <p style="font-size:14.5px;line-height:1.55;color:#A6ABC8;margin:14px 0 0">Около 415 ₽ в месяц.</p>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;margin-top:20px;padding:22px;border:1px dashed rgba(255,255,255,.22);border-radius:20px">
+      <p style="font-size:15.5px;line-height:1.6;color:#A6ABC8;margin:0;max-width:64ch"><strong style="color:#fff;font-weight:600">Приведи друга — получи ещё презентации.</strong> За каждого приглашённого, который перейдёт по вашей реферальной ссылке, +1 бесплатная презентация вам и другу. Ссылка есть в личном кабинете.</p>
+      <a href="https://app.fibonacciai.io/login" style="display:inline-flex;align-items:center;height:48px;padding:0 24px;border-radius:999px;background:#fff;color:#12142E;font-size:15px;font-weight:600;white-space:nowrap">Попробовать бесплатно</a>
+    </div>
+  </div>
+</section>
+
+<section id="faq" data-snap="" data-dim="" style="position:relative;min-height:100svh;display:flex;align-items:center;background:linear-gradient(170deg,#0F1230 0%,#0B0E24 100%);border-bottom:1px solid rgba(255,255,255,.08)">
+  <div style="width:100%;max-width:960px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(16px,3vw,40px)">
+    <h2 data-rise="" style="font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(28px,4vw,52px);line-height:1;margin:0 0 clamp(20px,2.6vw,32px);color:#fff">Частые вопросы</h2>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <details data-faq="" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:18px 20px">
+        <summary style="display:flex;gap:16px;align-items:center;justify-content:space-between;cursor:pointer;font-size:16.5px;font-weight:600;color:#fff">Как сделать презентацию из темы?<i style="flex:none;width:14px;height:14px;background:linear-gradient(#A6ABC8,#A6ABC8) center/100% 2px no-repeat,linear-gradient(#A6ABC8,#A6ABC8) center/2px 100% no-repeat;transition:transform .22s ease"></i></summary>
+        <p style="font-size:15.5px;line-height:1.6;color:#A6ABC8;margin:12px 0 0">Зарегистрируйтесь, введите тему одной строкой, выберите оформление и запустите генерацию. Через минуту получите готовые слайды с текстом и картинками. Дополнительно ничего писать не нужно.</p>
+      </details>
+      <details data-faq="" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:18px 20px">
+        <summary style="display:flex;gap:16px;align-items:center;justify-content:space-between;cursor:pointer;font-size:16.5px;font-weight:600;color:#fff">Можно ли скачать презентацию в PowerPoint?<i style="flex:none;width:14px;height:14px;background:linear-gradient(#A6ABC8,#A6ABC8) center/100% 2px no-repeat,linear-gradient(#A6ABC8,#A6ABC8) center/2px 100% no-repeat;transition:transform .22s ease"></i></summary>
+        <p style="font-size:15.5px;line-height:1.6;color:#A6ABC8;margin:12px 0 0">Да. Доступны два формата: .pptx для PowerPoint и PDF. Файл в .pptx открывается и редактируется как обычная презентация — в Microsoft PowerPoint, «Google Презентациях», «Р7-Офис».</p>
+      </details>
+      <details data-faq="" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:18px 20px">
+        <summary style="display:flex;gap:16px;align-items:center;justify-content:space-between;cursor:pointer;font-size:16.5px;font-weight:600;color:#fff">Это бесплатно?<i style="flex:none;width:14px;height:14px;background:linear-gradient(#A6ABC8,#A6ABC8) center/100% 2px no-repeat,linear-gradient(#A6ABC8,#A6ABC8) center/2px 100% no-repeat;transition:transform .22s ease"></i></summary>
+        <p style="font-size:15.5px;line-height:1.6;color:#A6ABC8;margin:12px 0 0">Первые две презентации после регистрации — бесплатно. Дальше есть пробная неделя за 1 ₽ и подписки от 199 ₽. Плюс за каждого приглашённого друга начисляется бесплатная презентация.</p>
+      </details>
+      <details data-faq="" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:18px 20px">
+        <summary style="display:flex;gap:16px;align-items:center;justify-content:space-between;cursor:pointer;font-size:16.5px;font-weight:600;color:#fff">Сколько времени занимает создание презентации?<i style="flex:none;width:14px;height:14px;background:linear-gradient(#A6ABC8,#A6ABC8) center/100% 2px no-repeat,linear-gradient(#A6ABC8,#A6ABC8) center/2px 100% no-repeat;transition:transform .22s ease"></i></summary>
+        <p style="font-size:15.5px;line-height:1.6;color:#A6ABC8;margin:12px 0 0">Около минуты с момента, когда вы ввели тему. Дольше всего обычно думают над формулировкой самой темы, а не ждут результат.</p>
+      </details>
+      <details data-faq="" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:18px 20px">
+        <summary style="display:flex;gap:16px;align-items:center;justify-content:space-between;cursor:pointer;font-size:16.5px;font-weight:600;color:#fff">На каком языке создаются презентации?<i style="flex:none;width:14px;height:14px;background:linear-gradient(#A6ABC8,#A6ABC8) center/100% 2px no-repeat,linear-gradient(#A6ABC8,#A6ABC8) center/2px 100% no-repeat;transition:transform .22s ease"></i></summary>
+        <p style="font-size:15.5px;line-height:1.6;color:#A6ABC8;margin:12px 0 0">Более чем на 15 языках: русский, английский, казахский, узбекский, китайский, испанский, французский, немецкий, японский, корейский и другие. Русский поддерживается полностью — от структуры до подписей на слайдах.</p>
+      </details>
+      <details data-faq="" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:18px 20px">
+        <summary style="display:flex;gap:16px;align-items:center;justify-content:space-between;cursor:pointer;font-size:16.5px;font-weight:600;color:#fff">Можно ли редактировать результат?<i style="flex:none;width:14px;height:14px;background:linear-gradient(#A6ABC8,#A6ABC8) center/100% 2px no-repeat,linear-gradient(#A6ABC8,#A6ABC8) center/2px 100% no-repeat;transition:transform .22s ease"></i></summary>
+        <p style="font-size:15.5px;line-height:1.6;color:#A6ABC8;margin:12px 0 0">Да. После генерации слайды редактируются прямо на сайте — меняются тексты, заголовки и порядок. А после скачивания в .pptx презентацию можно доработать в PowerPoint как любой обычный файл.</p>
+      </details>
+      <details data-faq="" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:18px 20px">
+        <summary style="display:flex;gap:16px;align-items:center;justify-content:space-between;cursor:pointer;font-size:16.5px;font-weight:600;color:#fff">Работает ли сервис в Telegram?<i style="flex:none;width:14px;height:14px;background:linear-gradient(#A6ABC8,#A6ABC8) center/100% 2px no-repeat,linear-gradient(#A6ABC8,#A6ABC8) center/2px 100% no-repeat;transition:transform .22s ease"></i></summary>
+        <p style="font-size:15.5px;line-height:1.6;color:#A6ABC8;margin:12px 0 0">Да, презентацию можно собрать прямо в Telegram-боте: отправляете тему — получаете готовый файл в чат. Удобно, когда вы не за компьютером.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section data-snap="" style="position:relative;overflow:hidden;min-height:100svh;display:flex;align-items:center;background:linear-gradient(135deg,#4B54F5 0%,#8442FF 100%)">
+  <span style="position:absolute;top:-140px;left:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.24),rgba(255,255,255,0) 70%);animation:fibBreath 12s ease-in-out infinite;pointer-events:none"></span>
+  <div style="position:relative;width:100%;max-width:1320px;margin:0 auto;padding:clamp(40px,6vw,86px) clamp(16px,3vw,40px);text-align:center">
+    <div data-mq="hide" style="width:120px;height:120px;margin:0 auto 30px;border-radius:32px;background:linear-gradient(150deg,rgba(255,255,255,.95),rgba(255,255,255,.55) 55%,rgba(255,255,255,.2));box-shadow:inset 0 4px 14px rgba(255,255,255,.9),inset 0 -16px 30px rgba(0,0,0,.18),0 34px 60px -26px rgba(0,0,0,.5);animation:fibFloat 10s ease-in-out infinite"></div>
+    <h2 style="font-family:'Oswald',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(32px,5vw,74px);line-height:.96;margin:0;color:#fff">Попробуй сейчас</h2>
+    <p style="font-size:clamp(16px,1.5vw,21px);color:#EDEBFF;margin:16px 0 0">Первые две презентации — бесплатно.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:30px">
+      <a href="https://app.fibonacciai.io/login" style="display:inline-flex;align-items:center;justify-content:center;height:56px;padding:0 28px;border-radius:999px;background:#fff;color:#12142E;font-size:16px;font-weight:600;transition:transform .22s ease">Попробовать бесплатно</a>
+      <a href="https://t.me/Fibonacci_presentation_bot" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;height:56px;padding:0 26px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.5);color:#fff;font-size:16px;font-weight:600;transition:background .22s ease">
+        <svg width="20" height="20" aria-hidden="true" style="flex:none"><path d="M22 3 1.8 10.9l6.1 2.3 2.2 7.3 3.4-4.6 5.2 3.9L22 3Z" fill="#29ABE2"></path></svg>Создать в Telegram
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer style="border-top:1px solid rgba(255,255,255,.08);background:#070919">
+  <div style="max-width:1320px;margin:0 auto;padding:clamp(32px,4vw,56px) clamp(16px,3vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(228px,1fr));gap:26px;color:#8E95BE">
+    <div>
+      <span style="display:flex;align-items:center;gap:10px;color:#fff;font-family:'Oswald',sans-serif;font-weight:600;font-size:19px;letter-spacing:.06em;text-transform:uppercase">
+        <span style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#5B63FF,#8E4DFF);display:grid;place-items:center;font-family:'Golos Text',sans-serif;font-size:14px;font-weight:600">ф</span>Fibonacci
+      </span>
+      <p style="font-size:14px;line-height:1.6;margin:14px 0 0;max-width:34ch">Сервисом пользуются более 10 000 человек в месяц. Проект развивается при поддержке Фонда содействия инновациям.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:9px;font-size:14px">
+      <a href="/privacy" style="color:#8E95BE">Политика конфиденциальности</a>
+      <a href="/terms" style="color:#8E95BE">Пользовательское соглашение</a>
+      <a href="/refund" style="color:#8E95BE">Возврат средств</a>
+    </div>
+    <div style="font-size:13px;line-height:1.7">
+      <p style="margin:0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#5A5F80">реквизиты ООО — вставить<br>ИНН / ОГРН / адрес</p>
+    </div>
+  </div>
+</footer>
+
+<div data-mq="sticky" style="display:none;position:fixed;left:0;right:0;bottom:0;z-index:70;padding:10px 14px 14px;background:linear-gradient(180deg,rgba(8,10,26,0),rgba(8,10,26,.95) 45%)">
+  <a href="https://app.fibonacciai.io/login" style="flex:1;display:inline-flex;align-items:center;justify-content:center;height:52px;border-radius:999px;background:linear-gradient(135deg,#4B54F5,#8442FF);color:#fff;font-size:16px;font-weight:600;box-shadow:0 16px 32px -14px rgba(132,66,255,.9)">Попробовать бесплатно</a>
+</div>
+
+</div>
+
+<script>
+(function(){
+  var track = document.querySelector('[style*="width:600%"]');
+  if(!track) return;
+  var total = 6, idx = 0;
+  var prev = document.querySelector('[data-feat-prev]');
+  var next = document.querySelector('[data-feat-next]');
+  var dots = document.querySelectorAll('[data-dot]');
+  function render(){
+    track.style.transform = 'translateX(-'+(idx*(100/total))+'%)';
+    dots.forEach(function(d,i){
+      d.style.width = (i===idx)?'26px':'8px';
+      d.style.background = (i===idx)?'#8442ff':'rgba(255,255,255,.28)';
+    });
+  }
+  function go(n){ idx=(n+total)%total; render(); }
+  if(prev) prev.addEventListener('click',function(){go(idx-1);});
+  if(next) next.addEventListener('click',function(){go(idx+1);});
+  dots.forEach(function(d,i){ d.addEventListener('click',function(){go(i);}); });
+  // свайп
+  var x0=null;
+  var wrap = track.parentElement;
+  wrap.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
+  wrap.addEventListener('touchend',function(e){
+    if(x0===null)return; var dx=e.changedTouches[0].clientX-x0;
+    if(Math.abs(dx)>40){ go(dx<0?idx+1:idx-1); } x0=null;
+  },{passive:true});
+  render();
+})();
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Как сделать презентацию из темы?","acceptedAnswer":{"@type":"Answer","text":"Зарегистрируйтесь, введите тему одной строкой, выберите оформление и запустите генерацию. Через минуту получите готовые слайды с текстом и картинками."}},
+{"@type":"Question","name":"Можно ли скачать презентацию в PowerPoint?","acceptedAnswer":{"@type":"Answer","text":"Да. Доступны два формата: .pptx для PowerPoint и PDF. Файл в .pptx открывается и редактируется в Microsoft PowerPoint, Google Презентациях и Р7-Офис."}},
+{"@type":"Question","name":"Это бесплатно?","acceptedAnswer":{"@type":"Answer","text":"Первые две презентации после регистрации бесплатно. Дальше есть пробная неделя за 1 рубль и подписки от 199 рублей. За каждого приглашённого друга начисляется бесплатная презентация."}},
+{"@type":"Question","name":"Сколько времени занимает создание презентации?","acceptedAnswer":{"@type":"Answer","text":"Около минуты с момента, когда вы ввели тему."}},
+{"@type":"Question","name":"На каком языке создаются презентации?","acceptedAnswer":{"@type":"Answer","text":"Более чем на 15 языках: русский, английский, казахский, узбекский, китайский, испанский, французский, немецкий, японский, корейский и другие."}},
+{"@type":"Question","name":"Можно ли редактировать результат?","acceptedAnswer":{"@type":"Answer","text":"Да. После генерации слайды редактируются прямо на сайте: меняются тексты, заголовки и порядок. После скачивания в .pptx презентацию можно доработать в PowerPoint."}},
+{"@type":"Question","name":"Работает ли сервис в Telegram?","acceptedAnswer":{"@type":"Answer","text":"Да, презентацию можно собрать в Telegram-боте: отправляете тему — получаете готовый файл в чат."}}
+]}
+</script>
+</body></html>

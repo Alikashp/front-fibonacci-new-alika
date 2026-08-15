@@ -1,0 +1,11 @@
+{
+  "name": "fibonacci-landing",
+  "version": "1.0.0",
+  "description": "Fibonacci AI — лендинг нейросеть для презентаций",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
