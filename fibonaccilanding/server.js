@@ -5,9 +5,10 @@ const PORT = process.env.PORT || 3000;
 
 // статика с кэшем и правильными типами
 app.use(express.static(path.join(__dirname, 'public'), {
-  maxAge: '7d',
+  maxAge: '1h',
   setHeaders: (res, filePath) => {
-    if (filePath.endsWith('.webp')) res.setHeader('Cache-Control', 'public, max-age=2592000');
+    // короткий кэш для картинок, чтобы обновления подхватывались без 30-дневного залипания
+    if (filePath.endsWith('.webp')) res.setHeader('Cache-Control', 'public, max-age=3600, must-revalidate');
   }
 }));
 

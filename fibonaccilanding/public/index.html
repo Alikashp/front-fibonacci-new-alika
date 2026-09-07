@@ -65,7 +65,7 @@
 <header style="position:sticky;top:0;z-index:60;backdrop-filter:blur(16px);background:rgba(8,10,26,.72);border-bottom:1px solid rgba(255,255,255,.07)">
   <div style="max-width:1320px;margin:0 auto;padding:13px clamp(16px,3vw,40px);display:flex;align-items:center;gap:18px;justify-content:space-between">
     <a href="#top" style="display:flex;align-items:center;gap:10px;color:#fff;font-family:'Oswald',sans-serif;font-weight:600;font-size:19px;letter-spacing:.06em;text-transform:uppercase">
-      <span style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#5B63FF,#8E4DFF);display:grid;place-items:center;font-family:'Golos Text',sans-serif;font-size:14px;font-weight:600">f</span>Fibonacci
+      <span style="width:28px;height:28px;flex:none;display:inline-flex"><svg viewBox="0 0 120 120" width="28" height="28" aria-hidden="true" style="display:block"><circle cx="60" cy="60" r="60" fill="#0B0B12"/><path d="M59 33 C80 35 91 47 89 59 C87 72 73 77 59 74 Z" fill="#2C43E6" stroke="#F3F1EC" stroke-width="4" stroke-linejoin="round"/><path d="M59 20 C59 45 59 74 59 92 C59 101 52 105 44 102" fill="none" stroke="#F3F1EC" stroke-width="7" stroke-linecap="round"/></svg></span>Fibonacci&nbsp;AI
     </a>
     <nav data-mq="hide" style="display:flex;gap:22px;font-size:14px;color:#A6ABC8">
       <a href="#how" style="color:#A6ABC8">How it works</a>
@@ -465,7 +465,7 @@
   <div style="max-width:1320px;margin:0 auto;padding:clamp(32px,4vw,56px) clamp(16px,3vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(228px,1fr));gap:26px;color:#8E95BE">
     <div>
       <span style="display:flex;align-items:center;gap:10px;color:#fff;font-family:'Oswald',sans-serif;font-weight:600;font-size:19px;letter-spacing:.06em;text-transform:uppercase">
-        <span style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#5B63FF,#8E4DFF);display:grid;place-items:center;font-family:'Golos Text',sans-serif;font-size:14px;font-weight:600">f</span>Fibonacci
+        <span style="width:28px;height:28px;flex:none;display:inline-flex"><svg viewBox="0 0 120 120" width="28" height="28" aria-hidden="true" style="display:block"><circle cx="60" cy="60" r="60" fill="#0B0B12"/><path d="M59 33 C80 35 91 47 89 59 C87 72 73 77 59 74 Z" fill="#2C43E6" stroke="#F3F1EC" stroke-width="4" stroke-linejoin="round"/><path d="M59 20 C59 45 59 74 59 92 C59 101 52 105 44 102" fill="none" stroke="#F3F1EC" stroke-width="7" stroke-linecap="round"/></svg></span>Fibonacci&nbsp;AI
       </span>
       <p style="font-size:14px;line-height:1.6;margin:14px 0 0;max-width:34ch">Used by more than 10,000 people every month.</p>
     </div>
@@ -486,6 +486,27 @@
 
 </div>
 
+<script>
+(function(){
+  try{
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var blocks = document.querySelectorAll('section > div, footer > div');
+    blocks.forEach(function(el){
+      el.style.opacity='0';
+      el.style.transform='translateY(26px)';
+      el.style.transition='opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1)';
+    });
+    var reveal=function(el){ el.style.opacity='1'; el.style.transform='none'; };
+    if(!('IntersectionObserver' in window)){ blocks.forEach(reveal); return; }
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ reveal(e.target); io.unobserve(e.target); } });
+    },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+    blocks.forEach(function(el){ io.observe(el); });
+    // страховка: показать всё через 3с, если что-то не сработало
+    setTimeout(function(){ blocks.forEach(reveal); }, 3000);
+  }catch(e){}
+})();
+</script>
 <script>
 (function(){
   var track = document.querySelector('[style*="width:600%"]');
