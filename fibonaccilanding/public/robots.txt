@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fibonacciai.io/sitemap.xml

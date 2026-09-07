@@ -13,14 +13,22 @@ app.use(express.static(path.join(__dirname, 'public'), {
 
 const send = (file) => (req, res) => res.sendFile(path.join(__dirname, 'public', file));
 
-// главная страница на слаг
-app.get('/neyroset-dlya-prezentaciy', send('index.html'));
+// главная — английская версия
 app.get('/', send('index.html'));
 
-// юридические документы — без .html в адресе
+// русская версия
+app.get('/ru', send('index-ru.html'));
+app.get('/ru/privacy', send('privacy-ru.html'));
+app.get('/ru/terms', send('terms-ru.html'));
+app.get('/ru/refund', send('refund-ru.html'));
+
+// английские документы
 app.get('/privacy', send('privacy.html'));
 app.get('/terms', send('terms.html'));
 app.get('/refund', send('refund.html'));
+
+// старый русский SEO-слаг → 301 на /ru
+app.get('/neyroset-dlya-prezentaciy', (req, res) => res.redirect(301, '/ru'));
 
 app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
