@@ -3,20 +3,76 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://fibonacciai.io/</loc>
+    <lastmod>2026-10-18</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://fibonacciai.io/"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://fibonacciai.io/ru"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://fibonacciai.io/"/>
   </url>
   <url>
     <loc>https://fibonacciai.io/ru</loc>
+    <lastmod>2026-10-18</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://fibonacciai.io/"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://fibonacciai.io/ru"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://fibonacciai.io/"/>
   </url>
-  <url><loc>https://fibonacciai.io/privacy</loc></url>
-  <url><loc>https://fibonacciai.io/terms</loc></url>
-  <url><loc>https://fibonacciai.io/refund</loc></url>
-  <url><loc>https://fibonacciai.io/ru/privacy</loc></url>
-  <url><loc>https://fibonacciai.io/ru/terms</loc></url>
-  <url><loc>https://fibonacciai.io/ru/refund</loc></url>
+  <url>
+    <loc>https://fibonacciai.io/privacy</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://fibonacciai.io/terms</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://fibonacciai.io/refund</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://fibonacciai.io/ru/privacy</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://fibonacciai.io/ru/terms</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://fibonacciai.io/ru/refund</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://fibonacciai.io/ru/prezentacii</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://fibonacciai.io/ru/prezentacii/literatura</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://fibonacciai.io/ru/prezentacii/literatura/pushkin</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://fibonacciai.io/ru/prezentacii/literatura/lev-tolstoj</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://fibonacciai.io/ru/prezentacii/astronomiya</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://fibonacciai.io/ru/prezentacii/astronomiya/luna</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://fibonacciai.io/ru/prezentacii/astronomiya/kosmos</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://fibonacciai.io/ru/prezentacii/zdorove</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://fibonacciai.io/ru/prezentacii/zdorove/zdorovyj-obraz-zhizni</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
 </urlset>

@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Fibonacci AI — лендинг нейросеть для презентаций",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build:library": "node scripts/build-library.js",
+    "render:slides": "python3 scripts/render-slides.py"
   },
   "dependencies": {
     "express": "^4.19.2"
